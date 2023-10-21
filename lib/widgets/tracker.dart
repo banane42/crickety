@@ -38,7 +38,8 @@ class _TrackerState extends State<Tracker> {
       context.read<GameProvider>().notifyPoints(
           clicks: _clicks,
           playerPosition: widget.position,
-          scoreArea: widget.scoreArea);
+          scoreArea: widget.scoreArea,
+      );
 
       if (_clicks == 1) {
         _buttonText = "/";
@@ -78,8 +79,8 @@ class TrackerColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GameProvider gameProvider =
-        Provider.of<GameProvider>(context, listen: true);
+    GameProvider gameProvider = context.watch<GameProvider>();
+
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 8),
       child: Column(
@@ -104,7 +105,10 @@ class TrackerColumn extends StatelessWidget {
           Tracker(position, ScoringAreas.bull),
           Container(
               margin: const EdgeInsetsDirectional.symmetric(vertical: 8),
-              child: Text(gameProvider.playerPointsString(position)))
+              child: Text(
+                  gameProvider.playerPointsString(position),
+              ),
+          ),
         ],
       ),
     );
