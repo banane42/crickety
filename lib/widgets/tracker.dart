@@ -79,7 +79,7 @@ class TrackerColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GameProvider gameProvider = Provider.of<GameProvider>(context, listen: true);
+    GameProvider gameProvider = context.watch<GameProvider>();
 
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 8),
