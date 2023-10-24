@@ -18,6 +18,7 @@ class GameScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: context.read<GameProvider>().playerCount,
           itemBuilder: (BuildContext context, int index) {
+            // Every Odd column Choose the numbered one
             if (index % 2 == 0) {
               return TrackerColumn(index);
             } else {

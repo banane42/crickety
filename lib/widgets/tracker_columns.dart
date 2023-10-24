@@ -44,7 +44,6 @@ class NumberedTrackerColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     GameProvider gameProvider =
         Provider.of<GameProvider>(context, listen: true);
-
     return Column(
       children: <Widget>[
         SizedBox(
@@ -57,6 +56,8 @@ class NumberedTrackerColumn extends StatelessWidget {
             ),
           ),
         ),
+        //For some reason each NumberedTracker wont expand the fit
+        // the whole columns width. What am I missing?????
         for (var area in ScoringAreas.values)
           Expanded(child: NumberedTracker(position, area)),
         Container(
