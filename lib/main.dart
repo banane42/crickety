@@ -7,24 +7,31 @@ import 'package:provider/provider.dart';
 
 void main() {
   usePathUrlStrategy();
-  runApp(const MainApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<GameProvider>(create: (_) => GameProvider())
+    ],
+    child: const MainApp(),
+  ));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
   @override
+  State<StatefulWidget> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [Provider<GameProvider>(create: (_) => GameProvider())],
-      child: MaterialApp(
-        title: "Crickety",
-        initialRoute: PlayerScreen.route,
-        routes: {
-          PlayerScreen.route: (context) => PlayerScreen(),
-          GameScreen.route: (context) => GameScreen()
-        },
-      ),
+    return MaterialApp(
+      title: "Crickety",
+      initialRoute: PlayerScreen.route,
+      routes: {
+        PlayerScreen.route: (context) => PlayerScreen(),
+        GameScreen.route: (context) => GameScreen()
+      },
     );
   }
 }

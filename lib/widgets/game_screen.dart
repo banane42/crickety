@@ -1,6 +1,6 @@
 import 'package:crickety/providers/game_provider.dart';
-import 'package:crickety/widgets/text_widgets.dart';
-import 'package:crickety/widgets/tracker.dart';
+import 'package:crickety/widgets/tracker_columns.dart';
+import 'package:crickety/widgets/trackers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,36 +13,18 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Flexible(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FlexibleText("20"),
-                  FlexibleText("19"),
-                  FlexibleText("18"),
-                  FlexibleText("17"),
-                  FlexibleText("16"),
-                  FlexibleText("15"),
-                  FlexibleText("B"),
-                ],
-              ),
-              Flexible(
-                flex: 2,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    for (var i = 0;
-                        i < context.read<GameProvider>().playerCount;
-                        i++)
-                      TrackerColumn(i)
-                  ],
-                ),
-              )
-            ],
-          ),
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemCount: context.read<GameProvider>().playerCount,
+          itemBuilder: (BuildContext context, int index) {
+            return NumberedTrackerColumn(index);
+            if (index % 2 == 0) {
+              return TrackerColumn(index);
+            } else {
+              return NumberedTrackerColumn(index);
+            }
+          },
         ),
       ),
     );

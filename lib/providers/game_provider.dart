@@ -1,12 +1,14 @@
-import 'package:crickety/widgets/tracker.dart';
+import 'package:crickety/widgets/trackers.dart';
 import 'package:flutter/material.dart';
 
 class GameProvider extends ChangeNotifier {
-  int playerCount = 0;
+  int playerCount = 3;
   List<List<int>> gameState = [];
   List<int> playerPoints = [];
 
-  GameProvider();
+  GameProvider() {
+    setPlayerCount(count: playerCount);
+  }
 
   void setPlayerCount({required int count}) {
     playerCount = count;
@@ -34,11 +36,9 @@ class GameProvider extends ChangeNotifier {
       }
     }
 
-    print("Is $scoreArea closed? $isClosed");
     if (isClosed) return;
 
     playerPoints[playerPosition] += scoreArea.points;
-    print("$playerPoints");
     notifyListeners();
   }
 
