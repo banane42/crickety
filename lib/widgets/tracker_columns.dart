@@ -16,7 +16,7 @@ class TrackerColumn extends StatelessWidget {
     return Column(
       children: <Widget>[
         SizedBox(
-          width: 32,
+          width: 128,
           child: TextField(
             textAlign: TextAlign.center,
             decoration: InputDecoration(
@@ -48,7 +48,7 @@ class NumberedTrackerColumn extends StatelessWidget {
     return Column(
       children: <Widget>[
         SizedBox(
-          width: 32,
+          width: 128,
           child: TextField(
             textAlign: TextAlign.center,
             decoration: InputDecoration(
